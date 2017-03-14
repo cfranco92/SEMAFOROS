@@ -1,3 +1,6 @@
+//CREAR SEMAFOROS
+  // $ ./createSemPosix semaforo 
+
 //PARA VER LOS SEMAFOROS CREADOS
   // ls -l /dev/shm/sem.
 
