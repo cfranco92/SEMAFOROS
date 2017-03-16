@@ -1,3 +1,7 @@
+// el productor puede trabajar 10 veces antes de bloquearse
+
+// --> /.Productor   la respuesta de arriba
+
 /*
  * Programa: Productor.cpp
  * Compilar: g++ -o Productor Productor.cpp -lpthread -lrt
@@ -39,7 +43,7 @@ main(int argc, const char *argv[]) {
   }
 
   int mem;
-  
+
   if ((mem = shm_open("memoria", O_RDWR, 0600)) == -1) {
     perror("shm_open");
     exit(1);
@@ -57,7 +61,7 @@ main(int argc, const char *argv[]) {
   int *n      = memoria;
   int *cantidad = memoria + 1;
   int *entra  = memoria + 2;
-  
+
   int valor = 0;
   for (;;) {
     valor++;
@@ -67,10 +71,10 @@ main(int argc, const char *argv[]) {
     cout << "Productor produciendo: " << valor << endl;
     buffer[*entra] = valor;
     *entra = (*entra + 1) % *n;
-    *cantidad = *cantidad + 1; 
+    *cantidad = *cantidad + 1;
     sem_post(mutex);
     sem_post(llenos);
   }
-  
+
   return 0;
 }

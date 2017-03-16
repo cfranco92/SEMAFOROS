@@ -38,7 +38,7 @@ main(int argc, const char *argv[]) {
   }
 
   int mem;
-  
+
   if ((mem = shm_open("memoria", O_RDWR, 0600)) == -1) {
     perror("shm_open");
     exit(1);
@@ -56,7 +56,7 @@ main(int argc, const char *argv[]) {
   int *cantidad = memoria + 1;
   int *n      = memoria;
   int *sale   = memoria + 3;
-  
+
   for (;;) {
     int valor;
     sem_wait(llenos);
@@ -66,7 +66,7 @@ main(int argc, const char *argv[]) {
     *cantidad = *cantidad - 1;
     cout << "Valor llegado: " << valor << endl;
     cout << "Cantidad: " << *cantidad << endl;
-    sleep(2);
+    sleep(2);  // --> Por esto cuando termina de consumir todo, vuelve a despertar el productor
     sem_post(mutex);
     sem_post(vacios);
   }
