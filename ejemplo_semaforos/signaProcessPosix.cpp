@@ -4,8 +4,8 @@
  * compilar: $ g++ -o createSemPosix createSemPosix.cpp -pthread
  * ejecutar: $ ./createSemPosix <nombre>
  */
-#include <fcntl.h> 
-#include <sys/stat.h> 
+#include <fcntl.h>
+#include <sys/stat.h>
 #include <semaphore.h>
 #include <cstdlib>
 #include <cerrno>
@@ -33,11 +33,11 @@ main(int argc, const char* argv[]) {
 
   cout << "This process is waiting for a signal" << endl;
 
-  sem_post(sem);
-  
+  sem_post(sem); //Señal al wait
+
   cout << "signal has been received" << endl;
 
   sem_close(sem);
-  
+
   return 0;
 }
